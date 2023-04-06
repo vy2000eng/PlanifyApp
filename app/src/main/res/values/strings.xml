@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">planifyStudyApp</string>
+    <string name="edit">edit</string>
+    <string name="create_task">Create Task</string>
+    <string name="menu_save">save</string>
+    <string name="delete">delete</string>
 </resources>
