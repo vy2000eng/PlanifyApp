@@ -4,16 +4,4 @@
     <string name="create_task">Create Task</string>
     <string name="menu_save">save</string>
     <string name="delete">delete</string>
-    <string name="menu_settings">menu_settings</string>
-    <string name="completedTasks" />
-    <string name="addATask">add a tasks</string>
-    <string name="prioritySpinner">priority spinner</string>
-
-
-    <string-array name="priorityArray">
-        <item> High Priority</item>
-        <item> Medium Priority</item>
-        <item>Low Priority</item>
-
-    </string-array>
 </resources>
