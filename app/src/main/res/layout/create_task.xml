@@ -1,76 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorPrimaryDark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme" />
+    <EditText
+        android:id="@+id/taskNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintStart_toEndOf="@id/taskNameTextView"
+        android:layout_marginStart="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/taskNameTextView"
+         />
+    <EditText
+        android:id="@+id/dueDateEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="datetime"
+        app:layout_constraintStart_toStartOf="@id/taskNameEditText"
+        app:layout_constraintBottom_toBottomOf="@id/dueDateTextView"
+       />
+
+    <Spinner
+        android:id="@+id/priorityEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+
+        android:ems="10"
+        app:layout_constraintStart_toStartOf="@id/taskNameEditText"
+        app:layout_constraintBottom_toBottomOf="@id/priorityTextView"
+       />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/DescriptionEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="170dp" />
+        app:layout_constraintStart_toStartOf="@id/taskNameEditText"
+        app:layout_constraintBottom_toBottomOf="@id/DescriptionTextView"
+      />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="228dp" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="108dp" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/taskNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Task Name"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="78dp" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/dueDateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Due Date"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="134dp" />
+        app:layout_constraintStart_toStartOf="@id/taskNameTextView"
+        app:layout_constraintTop_toBottomOf="@id/taskNameTextView"
+        android:layout_marginTop="30dp"
+        />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/priorityTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Priority"
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="196dp" />
+        app:layout_constraintStart_toStartOf="@id/dueDateTextView"
+        app:layout_constraintTop_toBottomOf="@id/dueDateTextView"
+        android:layout_marginTop="30dp"
+      />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/DescriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="notes"
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="254dp" />
+        android:text="description"
+        app:layout_constraintStart_toStartOf="@id/priorityTextView"
+        app:layout_constraintTop_toBottomOf="@id/priorityTextView"
+        android:layout_marginTop="30dp"
+     />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="60dp" />
+
 
 
 
