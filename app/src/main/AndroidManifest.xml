@@ -12,6 +12,9 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
 
         tools:targetApi="31">
+        <activity android:name=".AddActivity"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
