@@ -1,14 +1,11 @@
 package com.example.planifystudyapp.ViewHolder;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planifystudyapp.R;
@@ -26,6 +23,8 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
         layoutInflater = LayoutInflater.from(context);
     }
 
+
+
     @NonNull
     @Override
     public TaskListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -35,21 +34,13 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
     }
 
     @Override
-    public void onBindViewHolder( TaskListHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TaskListHolder holder, int position) {
         if(tasks != null){
             Tasks current = tasks.get(position);
             holder.task = current;
             holder.titleView.setText(current.title);
             holder.dueDate.setText(current.date);
             holder.description.setText(current.description);
-            int colorResId = current.priority == 0?R.color.colorLPDark
-                    :current.priority == 1?R.color.colorMPDark
-                    :current.priority ==2?R.color.colorHPDark:null;
-            int color = ContextCompat.getColor(holder.itemView.getContext(), colorResId);
-            holder.cardView.setCardBackgroundColor(color);
-
-
-
             if(current.isCompleted)
                 holder.isCompleted.setImageResource(R.drawable.check_mark);
             else
@@ -60,6 +51,7 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             holder.dueDate.setText(R.string.init);
             holder.description.setText(R.string.init);
         }
+
     }
 
     @Override
@@ -68,7 +60,7 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             return tasks.size();
         else return 0;
     }
-    public void setTasks(List<Tasks> tasks){
+    void setTasks(List<Tasks> tasks){
         this.tasks = tasks;
         notifyDataSetChanged();
     }
