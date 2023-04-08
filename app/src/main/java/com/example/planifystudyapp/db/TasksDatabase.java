@@ -74,14 +74,11 @@ public abstract class TasksDatabase extends RoomDatabase {
         (new Thread(() -> INSTANCE.taskDao().update(task))).start();
     }
 
-
-
-
    // public Tasks(int id,String title, String date, String description ,int priority, boolean isCompleted){
 
     private static void createTasksTable() {
        // for (int i = 0; i < 1; i++) {
-            insert(new Tasks(0,"task1", "10/21/2000","First Task",1,false));
+            insert(new Tasks(0,"task1", "10/21/2000","First Task",1,true));
        // }
     }
 
