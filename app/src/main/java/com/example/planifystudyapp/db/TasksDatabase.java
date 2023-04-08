@@ -40,7 +40,7 @@ public abstract class TasksDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            //createTasksTable();
+            createTasksTable();
         }
     };
 
@@ -77,12 +77,13 @@ public abstract class TasksDatabase extends RoomDatabase {
 
 
 
+   // public Tasks(int id,String title, String date, String description ,int priority, boolean isCompleted){
 
-//    private static void createTasksTable() {
-//        for (int i = 0; i < DefaultContent.TITLE.length; i++) {
-//            insert(new Task());
-//        }
-//    }
+    private static void createTasksTable() {
+       // for (int i = 0; i < 1; i++) {
+            insert(new Tasks(0,"task1", "10/21/2000","First Task",1,false));
+       // }
+    }
 
 
 

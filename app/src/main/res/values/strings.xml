@@ -4,4 +4,10 @@
     <string name="create_task">Create Task</string>
     <string name="menu_save">save</string>
     <string name="delete">delete</string>
+    <string-array name="priority_array">
+        <item> High Priority</item>
+        <item> Medium Priority</item>
+        <item>Low Priority</item>
+
+    </string-array>
 </resources>

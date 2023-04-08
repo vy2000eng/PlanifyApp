@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/menu_add"
+        android:icon="@drawable/add_icon"
+        android:title="Add"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_completed"
+        android:icon="@drawable/check_mark"
+        android:title="checkMark"
+        android:contentDescription="completedTasks"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/menu_settings"
+        android:title="settings"
+        app:showAsAction="never" />
+
+</menu>

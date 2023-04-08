@@ -16,12 +16,12 @@ public class Tasks {
         this.isCompleted = isCompleted;
     }
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "rowid" )
+    public int id;
 
     @ColumnInfo(name = "title")
     public String title;
 
-    @ColumnInfo(name = "rowid" )
-    public int id;
     @ColumnInfo(name = "date" )
     public String date;
     @ColumnInfo(name = "description" )
