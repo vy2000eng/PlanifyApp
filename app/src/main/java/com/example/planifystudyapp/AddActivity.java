@@ -1,4 +1,46 @@
-//package com.example.planifystudyapp;
+package com.example.planifystudyapp;
+
+
+import android.os.Bundle;
+import android.view.Menu;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AddActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.create_task);
+        Spinner spinner = findViewById(R.id.prioritySpinner);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.priority_array,
+                android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        setSupportActionBar(findViewById( R.id.toolbar));
+
+
+
+    }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.activity_add, menu);
+        //if(task_id == -1){
+        //menu.getItem(1).setIcon(R.drawable.cancel_icon);
+        menu.getItem(1).setTitle("Cancel");
+        setTitle("Add Task");
+
+        //}
+        // else{
+        //setTitle("Edit task");
+        //}
+        return true;
+    }
+
+
+
+}
 //
 //import android.app.AlertDialog;
 //import android.app.Dialog;
