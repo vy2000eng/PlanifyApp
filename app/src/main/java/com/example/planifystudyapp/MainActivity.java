@@ -1,6 +1,7 @@
 package com.example.planifystudyapp;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,13 +31,12 @@ public class MainActivity extends AppCompatActivity {
 
         TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
         TasksViewModel.getAllTasks().observe(this, adapter::setTasks);
-
-
-
-
-
-
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.activity_main,menu);
+       // menu.getItem(1).setIcon(R.drawable.)
+        return true;
 
     }
-
 }

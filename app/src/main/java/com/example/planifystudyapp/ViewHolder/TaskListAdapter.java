@@ -40,16 +40,15 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             holder.dueDate.setText(current.date);
             holder.description.setText(current.description);
             if(current.isCompleted)
-                holder.isCompleted.setImageResource(R.drawable.check_mark);
-            else
                 holder.isCompleted.setImageResource(R.drawable.assignment_icon);
+            else
+                holder.isCompleted.setImageResource(R.drawable.check_mark);
         }else{
             holder.titleView.setText(R.string.init);
             holder.isCompleted.setImageResource(R.drawable.assignment_icon);
             holder.dueDate.setText(R.string.init);
             holder.description.setText(R.string.init);
         }
-
     }
 
     @Override
