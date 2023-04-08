@@ -23,8 +23,6 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
         layoutInflater = LayoutInflater.from(context);
     }
 
-
-
     @NonNull
     @Override
     public TaskListHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -60,7 +58,7 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             return tasks.size();
         else return 0;
     }
-    void setTasks(List<Tasks> tasks){
+    public void setTasks(List<Tasks> tasks){
         this.tasks = tasks;
         notifyDataSetChanged();
     }
