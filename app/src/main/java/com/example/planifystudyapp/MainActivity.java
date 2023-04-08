@@ -1,7 +1,9 @@
 package com.example.planifystudyapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,6 +39,19 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.activity_main,menu);
        // menu.getItem(1).setIcon(R.drawable.)
         return true;
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.menu_add:
+                startActivity(new Intent(this, AddActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
 
     }
 }
