@@ -1,15 +1,22 @@
 package com.example.planifystudyapp;
 
 
+import android.app.Dialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import com.example.planifystudyapp.db.Tasks;
 import com.example.planifystudyapp.db.TasksDatabase;
@@ -17,6 +24,9 @@ import com.example.planifystudyapp.db.TasksDatabase;
 public class AddActivity extends AppCompatActivity {
     private int task_id;
     private boolean isCompleted;
+    EditText dueDate;
+    private AlertDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +37,7 @@ public class AddActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        setSupportActionBar(findViewById( R.id.toolbar));
+        setSupportActionBar(findViewById(R.id.toolbar));
 
         task_id = getIntent().getIntExtra("joke_id", -1);
         if (savedInstanceState == null) {
@@ -41,15 +51,37 @@ public class AddActivity extends AppCompatActivity {
 
                 });
             }
-        }
-        else {
+        } else {
             isCompleted = savedInstanceState.getBoolean("completed");
         }
 
-
-
+        EditText mDueDateEditText = findViewById(R.id.dueDateEditText);
+        mDueDateEditText.setOnClickListener(v -> {
+            showCalenderDialog();
+        });
 
     }
+
+    private void showCalenderDialog() {
+        CalendarView calendarView = new CalendarView(this);
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            String content_of_due_date = dayOfMonth + "/" + (month + 1) + "/" + year;
+            ((EditText) findViewById(R.id.dueDateEditText)).setText(content_of_due_date);
+
+        });
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setView(calendarView)
+                .setPositiveButton("OK", (dialog, which) -> {
+                    // do something when positive button is clicked
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    // do something when negative button is clicked
+                });
+        dialog = builder.create();
+        dialog.show();
+
+    }
+
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_add, menu);
         //if(task_id == -1){
@@ -57,10 +89,6 @@ public class AddActivity extends AppCompatActivity {
         menu.getItem(1).setTitle("Cancel");
         setTitle("Add Task");
 
-        //}
-        // else{
-        //setTitle("Edit task");
-        //}
         return true;
     }
 
@@ -108,6 +136,32 @@ public class AddActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putBoolean("isCompleted", isCompleted);
     }
+//    public static class DisplayCalender extends DialogFragment {
+//        CalendarView calendarView;
+//         DisplayCalender( CalendarView calenderView){
+//            this.calendarView = calenderView;
+//        }
+//
+//
+//        @Override
+//        public Dialog onCreateDialog(Bundle savedInstanceState) {
+//            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+//
+//            builder.setView(calendarView)
+//                    .setPositiveButton("Punchline",
+//                            (dialog)->{})
+//                    .setNegativeButton("Cancel",
+//                            (dialog, id) -> {});
+//            return builder.create();
+//        }
+//
+//        @Override
+//        public void onSaveInstanceState(@NonNull Bundle outState) {
+//            super.onSaveInstanceState(outState);
+//            outState.putString("JJB", "tester");
+//        }
+//    }
+
 }
 //
 //import android.app.AlertDialog;

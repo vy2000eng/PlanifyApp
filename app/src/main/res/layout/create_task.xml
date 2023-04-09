@@ -25,15 +25,26 @@
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toBottomOf="@id/taskNameTextView"
          />
+<!--    <EditText-->
+<!--        android:id="@+id/dueDateEditText"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="date"-->
+<!--        app:layout_constraintStart_toStartOf="@id/taskNameEditText"-->
+<!--        app:layout_constraintBottom_toBottomOf="@id/dueDateTextView"-->
+<!--       />-->
     <EditText
         android:id="@+id/dueDateEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="@id/taskNameEditText"
+        android:hint="select date..."
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/dueDateTextView"
-       />
+        app:layout_constraintStart_toStartOf="@id/taskNameEditText"
+        android:clickable="true"
+        android:focusable="false"
+        />
 
     <Spinner
         android:id="@+id/prioritySpinner"
