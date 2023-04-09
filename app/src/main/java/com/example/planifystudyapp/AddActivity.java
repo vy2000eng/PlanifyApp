@@ -3,12 +3,20 @@ package com.example.planifystudyapp;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.planifystudyapp.db.Tasks;
+import com.example.planifystudyapp.db.TasksDatabase;
+
 public class AddActivity extends AppCompatActivity {
+    private int task_id;
+    private boolean isCompleted;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +28,24 @@ public class AddActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
 
         setSupportActionBar(findViewById( R.id.toolbar));
+
+        task_id = getIntent().getIntExtra("joke_id", -1);
+        if (savedInstanceState == null) {
+            if (task_id != -1) {
+
+                TasksDatabase.getTask(task_id, task -> {
+                    ((EditText) findViewById(R.id.taskNameEditText)).setText(task.title);
+                    ((EditText) findViewById(R.id.dueDateEditText)).setText(task.date);
+                    ((EditText) findViewById(R.id.descriptionEditText)).setText(task.description);
+                    isCompleted = task.isCompleted;
+
+                });
+            }
+        }
+        else {
+            isCompleted = savedInstanceState.getBoolean("completed");
+        }
+
 
 
 
@@ -38,8 +64,50 @@ public class AddActivity extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected( MenuItem item) {
+        //return super.onOptionsItemSelected(item);
+        switch(item.getItemId()){
+            case R.id.menu_save:
+                updateDb();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void updateDb() {
+        Spinner priority = findViewById(R.id.prioritySpinner);
+        String contentOfPriority = priority.getSelectedItem().toString();
+        int whatPriority =
+                contentOfPriority.equals("High Priority")?2 :
+                        contentOfPriority.equals("Medium Priority")?1:
+                                contentOfPriority.equals("Low Priority")?0:-1;
 
 
+
+        Tasks task = new Tasks(task_id == -1?0:task_id,
+                ((EditText) findViewById(R.id.taskNameEditText)).getText().toString(),
+                ((EditText) findViewById(R.id.dueDateEditText)).getText().toString(),
+                ((EditText) findViewById(R.id.descriptionEditText)).getText().toString(),
+                whatPriority,
+                isCompleted
+
+                //Integer.parseInt()
+                );
+        if (task_id == -1) {
+           TasksDatabase.insert(task);
+        } else {
+            TasksDatabase.update(task);
+        }
+        finish(); // Quit activity
+
+    }
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("isCompleted", isCompleted);
+    }
 }
 //
 //import android.app.AlertDialog;
