@@ -1,25 +1,20 @@
 package com.example.planifystudyapp.ViewHolder;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.planifystudyapp.MainActivity;
 import com.example.planifystudyapp.R;
-import com.example.planifystudyapp.SettingsActivity;
 import com.example.planifystudyapp.db.Tasks;
 
 import java.util.List;
+import java.util.Objects;
 
 public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
     public final LayoutInflater layoutInflater;
@@ -27,6 +22,7 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
 
     private List<Tasks> tasks; // Cached copy of jokes
     private int colorResId;
+    private String mCardScheme;
     private boolean mIsInverted;
 
     public TaskListAdapter(Context context){
@@ -41,35 +37,47 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
                 .inflate(R.layout.list_item, parent, false);
         return new TaskListHolder(itemView);
     }
-    public void setIsInverted(boolean isInverted) {
-        mIsInverted = isInverted;
-    }
+//    public void setIsInverted(boolean isInverted) {
+//        mIsInverted = isInverted;
+//    }
+    public void setLightOrDark(String cardScheme){
+        mCardScheme = cardScheme;}
 
     @Override
     public void onBindViewHolder( TaskListHolder holder, int position) {
-        if(tasks != null){
+        if(tasks != null) {
             Tasks current = tasks.get(position);
             holder.task = current;
             holder.titleView.setText(current.title);
             holder.dueDate.setText(current.date);
             holder.description.setText(current.description);
 
-
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(mContext);
-//            Toast.makeText(mContext, "The current tf setting value is " + sharedPref.getBoolean("tfSetting", true)
-//                    , Toast.LENGTH_SHORT).show();
-            //int colorResId = ;
-            if(mIsInverted){
-
-                colorResId = current.priority == 0?R.color.colorLPDarkInverted
-                        :current.priority == 1?R.color.colorMPDarkInverted
-                        :current.priority ==2?R.color.colorHPDarkInverted:null;
-            }else{
-                 colorResId = current.priority == 0?R.color.colorLPDark
-                        :current.priority == 1?R.color.colorMPDark
-                        :current.priority ==2?R.color.colorHPDark:null;
-
+            if (Objects.equals(mCardScheme, "Light")) {
+                holder.titleView.setTextColor(Color.DKGRAY );
+                holder.dueDate.setTextColor(Color.DKGRAY );
+                holder.description.setTextColor(Color.DKGRAY);
+            } else if (Objects.equals(mCardScheme, "Dark")) {
+                holder.titleView.setTextColor(Color.LTGRAY);
+                holder.dueDate.setTextColor(Color.LTGRAY);
+                holder.description.setTextColor(Color.LTGRAY);
             }
+
+
+
+            colorResId = Objects.equals(mCardScheme, "Light") ? current.priority == 0
+                    ? R.color.colorLP
+                    : current.priority == 1 ? R.color.colorMP
+                    : current.priority == 2 ? R.color.colorHP : null
+                    : Objects.equals(mCardScheme, "Dark")
+                    ? current.priority == 0 ? R.color.colorLPDark
+                    : current.priority == 1 ? R.color.colorMPDark
+                    : current.priority == 2 ? R.color.colorHPDark : null : current.priority == 0
+                    ? R.color.colorLPDarkInverted
+                    : current.priority == 1 ? R.color.colorMPDarkInverted
+                    : current.priority == 2 ? R.color.colorHPDarkInverted : null;
+
+
+
 
 
             int color = ContextCompat.getColor(holder.itemView.getContext(), colorResId);

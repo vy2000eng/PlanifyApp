@@ -1,22 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#009688</color>
-    <color name="colorPrimaryDark">#00796B</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorHP">#F44336</color>
-    <color name="colorHPDark">#D32F2F</color>
-    <color name="colorHPDarkInverted">#2CD0D0</color>
-    <color name="colorMP">#FFC107</color>
-    <color name="colorMPDark">#FFA000</color>
-    <color name="colorMPDarkInverted">#005FFF</color>
-    <color name="colorLP">#8BC34A</color>
-    <color name="colorLPDark">#689F38</color>
-    <color name="colorLPDarkInverted">#9760C7</color>
-    <color name="colorCompleted">#9E9E9E</color>
-    <color name="colorCompletedDark">#616161</color>
-    <color name="colorBackground">#F5F5F5</color>
-    <color name="colorTextPrimary">#212121</color>
-    <color name="colorTextSecondary">#757575</color>
+<!--    <color name="colorPrimary">#009688</color>-->
+<!--    <color name="colorPrimaryDark">#00796B</color>-->
+<!--    <color name="colorAccent">#FF4081</color>-->
+<!--    <color name="colorHP">#F44336</color>-->
+<!--    <color name="colorHPDark">#D32F2F</color>-->
+<!--    <color name="colorHPDarkInverted">#2CD0D0</color>-->
+<!--    <color name="colorMP">#FFC107</color>-->
+<!--    <color name="colorMPDark">#FFA000</color>-->
+<!--    <color name="colorMPDarkInverted">#005FFF</color>-->
+<!--    <color name="colorLP">#8BC34A</color>-->
+<!--    <color name="colorLPDark">#689F38</color>-->
+<!--    <color name="colorLPDarkInverted">#9760C7</color>-->
+<!--    <color name="colorCompleted">#9E9E9E</color>-->
+<!--    <color name="colorCompletedDark">#616161</color>-->
+<!--    <color name="colorBackground">#F5F5F5</color>-->
+<!--    <color name="colorTextPrimary">#212121</color>-->
+<!--    <color name="colorTextSecondary">#757575</color>-->
+    <color name="colorPrimary">#A6D4E6</color>
+    <color name="colorPrimaryDark">#1F1D2B</color>
+    <color name="colorAccent">#FBB13C</color>
+    <color name="colorHP">#FC5185</color>
+    <color name="colorHPDark">#3B0F20</color>
+    <color name="colorHPDarkInverted">#D4FBD3</color>
+    <color name="colorMP">#0080FE</color>
+    <color name="colorMPDark">#FF5733</color>
+    <color name="colorMPDarkInverted">#2C2D52</color>
+    <color name="colorLP">#F2A2E8</color>
+    <color name="colorLPDark">#6F226D</color>
+    <color name="colorLPDarkInverted">#0D5A83</color>
+    <color name="colorCompleted">#C3C3C3</color>
+    <color name="colorCompletedDark">#414141</color>
+    <color name="colorBackground">#F9F9F9</color>
+    <color name="colorTextPrimary">#2D2D2D</color>
+    <color name="colorTextSecondary">#888888</color>
+
+
+
+
+
+
+
+
+
+
+
+
+
 </resources>
 
 
