@@ -65,14 +65,16 @@ public class AddActivity extends AppCompatActivity {
     private void showCalenderDialog() {
         CalendarView calendarView = new CalendarView(this);
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            String content_of_due_date = dayOfMonth + "/" + (month + 1) + "/" + year;
+            String content_of_due_date = (month + 1)+" / " +dayOfMonth +  " / " + year;
             ((EditText) findViewById(R.id.dueDateEditText)).setText(content_of_due_date);
 
         });
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setView(calendarView)
                 .setPositiveButton("OK", (dialog, which) -> {
+                 Log.d("Date", String.valueOf(calendarView));
                     // do something when positive button is clicked
+
                 })
                 .setNegativeButton("Cancel", (dialog, which) -> {
                     // do something when negative button is clicked
