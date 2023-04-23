@@ -5,10 +5,13 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorHP">#F44336</color>
     <color name="colorHPDark">#D32F2F</color>
+    <color name="colorHPDarkInverted">#2CD0D0</color>
     <color name="colorMP">#FFC107</color>
     <color name="colorMPDark">#FFA000</color>
+    <color name="colorMPDarkInverted">#005FFF</color>
     <color name="colorLP">#8BC34A</color>
     <color name="colorLPDark">#689F38</color>
+    <color name="colorLPDarkInverted">#9760C7</color>
     <color name="colorCompleted">#9E9E9E</color>
     <color name="colorCompletedDark">#616161</color>
     <color name="colorBackground">#F5F5F5</color>
