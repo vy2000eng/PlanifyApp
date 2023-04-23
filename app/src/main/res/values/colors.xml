@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorHP">#F44336</color>
+    <color name="colorHPInverted">#2CD0D0</color>
+    <color name="colorMPInverted">#005FFF</color>
+    <color name="colorLPInverted">#9760C7</color>
     <color name="colorHPDark">#D32F2F</color>
     <color name="colorMP">#FFC107</color>
     <color name="colorMPDark">#FFA000</color>
