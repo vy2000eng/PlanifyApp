@@ -2,6 +2,7 @@ package com.example.planifystudyapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.lstTasks);
         TaskListAdapter adapter = new TaskListAdapter(this);
         recyclerView.setAdapter(adapter);
+        Log.d("reclerr", "onCreate: ");
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
