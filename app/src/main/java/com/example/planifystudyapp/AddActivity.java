@@ -39,7 +39,7 @@ public class AddActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.toolbar));
 
-        task_id = getIntent().getIntExtra("joke_id", -1);
+        task_id = getIntent().getIntExtra("task_id", -1);
         if (savedInstanceState == null) {
             if (task_id != -1) {
 
@@ -101,6 +101,7 @@ public class AddActivity extends AppCompatActivity {
             case R.id.menu_save:
                 updateDb();
                 return true;
+            case R.id.menu_delete:
             default:
                 return super.onOptionsItemSelected(item);
         }

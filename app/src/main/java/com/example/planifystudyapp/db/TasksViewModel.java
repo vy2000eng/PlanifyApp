@@ -25,4 +25,15 @@ public class TasksViewModel extends AndroidViewModel {
     public LiveData<List<Tasks>> getAllTasks() {
         return tasks;
     }
+
+    public LiveData<List<Tasks>> getUnCompletedTasks(){
+        tasks = TasksDatabase.getDatabase(getApplication()).taskDao().getUnCompleted(false);
+        return tasks;
+
+    }
+    public LiveData<List<Tasks>> getCompletedTasks(){
+        tasks = TasksDatabase.getDatabase(getApplication()).taskDao().getUnCompleted(true);
+        return tasks;
+
+    }
 }

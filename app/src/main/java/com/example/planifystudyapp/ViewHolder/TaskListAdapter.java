@@ -47,11 +47,13 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
     public void onBindViewHolder( TaskListHolder holder, int position) {
         if(tasks != null) {
             Tasks current = tasks.get(position);
+
             holder.task = current;
+
+
             holder.titleView.setText(current.title);
             holder.dueDate.setText(current.date);
             holder.description.setText(current.description);
-
             if (Objects.equals(mCardScheme, "Light")) {
                 holder.titleView.setTextColor(Color.DKGRAY );
                 holder.dueDate.setTextColor(Color.DKGRAY );
@@ -83,12 +85,11 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             int color = ContextCompat.getColor(holder.itemView.getContext(), colorResId);
             holder.cardView.setCardBackgroundColor(color);
 
-
-
             if(current.isCompleted)
                 holder.isCompleted.setImageResource(R.drawable.check_mark);
             else
                 holder.isCompleted.setImageResource(R.drawable.assignment_icon);
+
         }else{
             holder.titleView.setText(R.string.init);
             holder.isCompleted.setImageResource(R.drawable.assignment_icon);

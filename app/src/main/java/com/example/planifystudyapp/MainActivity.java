@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.planifystudyapp.ViewHolder.TaskListAdapter;
+import com.example.planifystudyapp.db.Tasks;
 import com.example.planifystudyapp.db.TasksDatabase;
 import com.example.planifystudyapp.db.TasksViewModel;
 
@@ -30,20 +31,20 @@ public class MainActivity extends AppCompatActivity {
     private String mCardScheme;
     private TaskListAdapter adapter;
     private RecyclerView recyclerView;
+    private boolean isCompleted = false;
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-
 
         setSupportActionBar(findViewById(R.id.toolbar));
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         mIsInverted = sharedPref.getBoolean("tfSetting", false);
         mCardScheme = sharedPref.getString("cardScheme","");
+        if (savedInstanceState != null) {
+            isCompleted = savedInstanceState.getBoolean("filtered");
+        }
 
 
 
@@ -61,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         //recyclerView.setBackgroundColor(Color.DKGRAY);
 
+
         TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
-        TasksViewModel.getAllTasks().observe(this, adapter::setTasks);
+        //TasksViewModel.filterIsComplete(isCompleted);
+        TasksViewModel.getUnCompletedTasks().observe(this, adapter::setTasks);
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -82,6 +86,29 @@ public class MainActivity extends AppCompatActivity {
 
 
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                return true;
+            case R.id.menu_completed:
+                isCompleted = !isCompleted;
+                if(isCompleted){
+                    item.setIcon(R.drawable.check_mark);
+                    TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
+                    TasksViewModel.filterIsComplete(isCompleted);
+                    TasksViewModel.getCompletedTasks();
+                }else{
+                    item.setIcon(R.drawable.assignment_icon);
+                    TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
+                    TasksViewModel.filterIsComplete(isCompleted);
+                    TasksViewModel.getUnCompletedTasks();
+                }
+                recyclerView = findViewById(R.id.lstTasks);
+                adapter = new TaskListAdapter(this);
+
+                recyclerView.setAdapter(adapter);
+                adapter.setLightOrDark(mCardScheme);
+
+
+                TasksViewModel.getAllTasks().observe(this, adapter::setTasks);
+                return true;
 
 
             default:
@@ -90,6 +117,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("filtered", isCompleted);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -107,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
             cardScheme = "Inverted";
 
         }
+
         //prefs.getString("cardScheme", "");//prefs.getString("cardScheme", "");;//prefs.getString("cardScheme", "");
 
 
@@ -135,13 +169,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setBackgroundColor(color);
 
         // If the value has changed, update the adapter
-        if(!cardScheme.equals(mCardScheme)){
+        //if(!cardScheme.equals(mCardScheme)){
             mCardScheme = cardScheme;
             //cardScheme = mcardScheme;
             adapter.setLightOrDark(cardScheme);
             adapter.notifyDataSetChanged();
 
-        }
+        //}
 
     }
 }
