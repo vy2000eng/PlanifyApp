@@ -50,18 +50,25 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
 
             holder.task = current;
 
+            //String whatPriority = current.priority == 0?"Low Priority"
+
 
             holder.titleView.setText(current.title);
             holder.dueDate.setText(current.date);
             holder.description.setText(current.description);
+            //holder.priority.setText();
             if (Objects.equals(mCardScheme, "Light")) {
                 holder.titleView.setTextColor(Color.DKGRAY );
                 holder.dueDate.setTextColor(Color.DKGRAY );
                 holder.description.setTextColor(Color.DKGRAY);
+                holder.priorityTv.setTextColor(Color.DKGRAY);
+
+
             } else if (Objects.equals(mCardScheme, "Dark")) {
                 holder.titleView.setTextColor(Color.LTGRAY);
                 holder.dueDate.setTextColor(Color.LTGRAY);
                 holder.description.setTextColor(Color.LTGRAY);
+                holder.priorityTv.setTextColor(Color.LTGRAY);
             }
 
 
@@ -79,6 +86,11 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
                     : current.priority == 2 ? R.color.colorHPDarkInverted : null;
 
 
+
+            holder.priorityTv.setText(
+                    current.priority == 0 ? "Low Priority":
+                    current.priority == 1? "Medium Priority":
+                            current.priority == 2?"High Priority":"");
 
 
 

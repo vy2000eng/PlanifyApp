@@ -102,9 +102,15 @@ public class AddActivity extends AppCompatActivity {
                 updateDb();
                 return true;
             case R.id.menu_delete:
+                deleteRecord();
+
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void deleteRecord() {
+        TasksDatabase.delete(task_id);
     }
 
     private void updateDb() {

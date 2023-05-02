@@ -23,8 +23,10 @@ public class TaskListHolder extends RecyclerView.ViewHolder{
     public TextView titleView;
     public TextView dueDate;
     public TextView description;
+    public TextView priorityTv;
     public final ImageView isCompleted;
     public CardView cardView;
+
     public Tasks task;
    // private List<Tasks> tasks; // cached copy of tasks
     //private final LayoutInflater layoutInflater;
@@ -34,6 +36,9 @@ public class TaskListHolder extends RecyclerView.ViewHolder{
         dueDate = itemView.findViewById(R.id.dueDateTextView);
         description = itemView.findViewById(R.id.DescriptionTextView);
         isCompleted = itemView.findViewById(R.id.isCompletedImageView);
+        priorityTv = itemView.findViewById(R.id.priorityTextView);
+
+
         cardView = itemView.findViewById(R.id.priorityCardView);
 
         isCompleted.setOnClickListener(view -> {

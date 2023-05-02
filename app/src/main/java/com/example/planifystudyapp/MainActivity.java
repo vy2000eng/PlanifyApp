@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,11 +34,15 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private boolean isCompleted = false;
 
+    public TextView typeOfTask;
+
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         setSupportActionBar(findViewById(R.id.toolbar));
+
+        typeOfTask = findViewById(R.id.which_tasks);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         mIsInverted = sharedPref.getBoolean("tfSetting", false);
@@ -90,11 +95,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_completed:
                 isCompleted = !isCompleted;
                 if(isCompleted){
+                    typeOfTask.setText("Completed Tasks:");
                     item.setIcon(R.drawable.check_mark);
                     TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
                     TasksViewModel.filterIsComplete(isCompleted);
                     TasksViewModel.getCompletedTasks();
                 }else{
+                    typeOfTask.setText("To do:");
+
                     item.setIcon(R.drawable.assignment_icon);
                     TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
                     TasksViewModel.filterIsComplete(isCompleted);
