@@ -24,13 +24,14 @@
             android:id="@+id/which_tasks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintStart_toStartOf="parent"
+            android:padding="16dp"
             android:text="To Do Items:"
-            android:textSize="36sp"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
             android:fontFamily="sans-serif"
-            android:gravity="center"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/lstTasks"

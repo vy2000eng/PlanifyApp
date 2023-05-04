@@ -2,6 +2,7 @@ package com.example.planifystudyapp.ViewHolder;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
     private String mCardScheme;
     private boolean mIsInverted;
 
-    public TaskListAdapter(Context context){
+    public TaskListAdapter(Context context) {
         mContext = context;
         layoutInflater = LayoutInflater.from(context);
     }
@@ -37,15 +38,17 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
                 .inflate(R.layout.list_item, parent, false);
         return new TaskListHolder(itemView);
     }
-//    public void setIsInverted(boolean isInverted) {
+
+    //    public void setIsInverted(boolean isInverted) {
 //        mIsInverted = isInverted;
 //    }
-    public void setLightOrDark(String cardScheme){
-        mCardScheme = cardScheme;}
+    public void setLightOrDark(String cardScheme) {
+        mCardScheme = cardScheme;
+    }
 
     @Override
-    public void onBindViewHolder( TaskListHolder holder, int position) {
-        if(tasks != null) {
+    public void onBindViewHolder(TaskListHolder holder, int position) {
+        if (tasks != null) {
             Tasks current = tasks.get(position);
 
             holder.task = current;
@@ -58,8 +61,8 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             holder.description.setText(current.description);
             //holder.priority.setText();
             if (Objects.equals(mCardScheme, "Light")) {
-                holder.titleView.setTextColor(Color.DKGRAY );
-                holder.dueDate.setTextColor(Color.DKGRAY );
+                holder.titleView.setTextColor(Color.DKGRAY);
+                holder.dueDate.setTextColor(Color.DKGRAY);
                 holder.description.setTextColor(Color.DKGRAY);
                 holder.priorityTv.setTextColor(Color.DKGRAY);
 
@@ -70,8 +73,6 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
                 holder.description.setTextColor(Color.LTGRAY);
                 holder.priorityTv.setTextColor(Color.LTGRAY);
             }
-
-
 
             colorResId = Objects.equals(mCardScheme, "Light") ? current.priority == 0
                     ? R.color.colorLP
@@ -85,24 +86,24 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
                     : current.priority == 1 ? R.color.colorMPDarkInverted
                     : current.priority == 2 ? R.color.colorHPDarkInverted : null;
 
-
-
             holder.priorityTv.setText(
-                    current.priority == 0 ? "Low Priority":
-                    current.priority == 1? "Medium Priority":
-                            current.priority == 2?"High Priority":"");
-
-
+                    current.priority == 0 ? "Low Priority" :
+                            current.priority == 1 ? "Medium Priority" :
+                                    current.priority == 2 ? "High Priority" : "");
 
             int color = ContextCompat.getColor(holder.itemView.getContext(), colorResId);
             holder.cardView.setCardBackgroundColor(color);
 
-            if(current.isCompleted)
+            if (current.isCompleted) {
                 holder.isCompleted.setImageResource(R.drawable.check_mark);
-            else
+            } else {
                 holder.isCompleted.setImageResource(R.drawable.assignment_icon);
+            }
+            if (Objects.equals(mCardScheme, "Dark")) {
+                holder.isCompleted.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorTextSecondary), PorterDuff.Mode.SRC_IN);
+            }
 
-        }else{
+        } else {
             holder.titleView.setText(R.string.init);
             holder.isCompleted.setImageResource(R.drawable.assignment_icon);
             holder.dueDate.setText(R.string.init);
@@ -116,7 +117,8 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             return tasks.size();
         else return 0;
     }
-    public void setTasks(List<Tasks> tasks){
+
+    public void setTasks(List<Tasks> tasks) {
         this.tasks = tasks;
         notifyDataSetChanged();
     }

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.ContentView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class AddActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_task);
+
         Spinner spinner = findViewById(R.id.prioritySpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.priority_array,
                 android.R.layout.simple_spinner_item);
@@ -86,10 +88,18 @@ public class AddActivity extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_add, menu);
-        //if(task_id == -1){
-        //menu.getItem(1).setIcon(R.drawable.cancel_icon);
-        menu.getItem(1).setTitle("Cancel");
-        setTitle("Add Task");
+
+
+
+        if(task_id == -1) {
+            menu.getItem(1).setIcon(R.drawable.cancel_icon);
+           // menu.getItem(1).setTitle(R.string.menu_cancel);
+            setTitle("Add task");
+        }else{
+            menu.getItem(1).setTitle("Cancel");
+            setTitle("update Task");
+
+        }
 
         return true;
     }
@@ -102,7 +112,14 @@ public class AddActivity extends AppCompatActivity {
                 updateDb();
                 return true;
             case R.id.menu_delete:
-                deleteRecord();
+                //deleteRecord();
+                if (task_id != -1) {
+                    ConfirmDeleteDialog confirmDialog = new ConfirmDeleteDialog();
+                    confirmDialog.show(getSupportFragmentManager(), "deletionConfirmation");
+                }
+                else {
+                    finish();
+                }
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -145,6 +162,27 @@ public class AddActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putBoolean("isCompleted", isCompleted);
     }
+    public static class ConfirmDeleteDialog extends DialogFragment {
+
+        @Override
+        public Dialog onCreateDialog(@NonNull Bundle savedInstanceState) {
+
+            android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(getActivity());
+
+            builder.setTitle("Delete the task?")
+                    .setMessage("You will not be able to undo the deletion!")
+                    .setPositiveButton("Delete",
+                            (dialog,id) -> {
+                                ((AddActivity) getActivity()).deleteRecord();
+                                getActivity().finish();
+                            })
+                    .setNegativeButton("Return to task list",
+                            (dialog, id) -> getActivity().finish());
+            return builder.create();
+        }
+    }
+
+
 //    public static class DisplayCalender extends DialogFragment {
 //        CalendarView calendarView;
 //         DisplayCalender( CalendarView calenderView){
