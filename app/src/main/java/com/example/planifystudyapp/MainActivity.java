@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Toast.makeText(MainActivity.this, "The current tf setting value is " + sharedPref.getString("cardScheme", "")
-                , Toast.LENGTH_LONG).show();
+//        Toast.makeText(MainActivity.this, "The current tf setting value is " + sharedPref.getString("cardScheme", "")
+//                , Toast.LENGTH_LONG).show();
 
 
 
@@ -162,11 +162,11 @@ public class MainActivity extends AppCompatActivity {
 //        }
         //boolean isInverted = prefs.getBoolean("tfSetting", false);
 
-        Toast.makeText(MainActivity.this,
-                "The current card color value setting value after onResume is " + prefs.getString("cardScheme", "")
-                +"\nThe mCardValue  onResume i:" + mCardScheme
-
-                , Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MainActivity.this,
+//                "The current card color value setting value after onResume is " + prefs.getString("cardScheme", "")
+//                +"\nThe mCardValue  onResume i:" + mCardScheme
+//
+//                , Toast.LENGTH_SHORT).show();
 //        Toast.makeText(MainActivity.this,
 //                "The current tf setting value after onResume is " + prefs.getBoolean("tfSetting", false)+
 //                        "\n value of isInverted is: " + isInverted+
