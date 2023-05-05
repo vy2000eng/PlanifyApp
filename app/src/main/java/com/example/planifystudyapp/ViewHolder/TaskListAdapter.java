@@ -67,7 +67,7 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
                 holder.priorityTv.setTextColor(Color.DKGRAY);
 
 
-            } else if (Objects.equals(mCardScheme, "Dark")) {
+            } else if (Objects.equals(mCardScheme, "Dark")||Objects.equals(mCardScheme, "Inverted")) {
                 holder.titleView.setTextColor(Color.LTGRAY);
                 holder.dueDate.setTextColor(Color.LTGRAY);
                 holder.description.setTextColor(Color.LTGRAY);
@@ -101,6 +101,10 @@ public class TaskListAdapter extends RecyclerView.Adapter <TaskListHolder> {
             }
             if (Objects.equals(mCardScheme, "Dark")) {
                 holder.isCompleted.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorTextSecondary), PorterDuff.Mode.SRC_IN);
+            }else{
+                holder.isCompleted.setColorFilter(ContextCompat.getColor(holder.itemView.getContext(), R.color.colorPrimaryDark), PorterDuff.Mode.SRC_IN);
+
+
             }
 
         } else {

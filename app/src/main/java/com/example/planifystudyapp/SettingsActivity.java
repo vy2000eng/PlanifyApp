@@ -1,7 +1,11 @@
 package com.example.planifystudyapp;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 

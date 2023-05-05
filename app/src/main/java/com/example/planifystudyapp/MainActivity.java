@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -25,6 +26,7 @@ import com.example.planifystudyapp.db.Tasks;
 import com.example.planifystudyapp.db.TasksDatabase;
 import com.example.planifystudyapp.db.TasksViewModel;
 
+
 public class MainActivity extends AppCompatActivity {
     private int task_id;
     private TasksViewModel TasksViewModel;
@@ -33,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private TaskListAdapter adapter;
     private RecyclerView recyclerView;
     private boolean isCompleted = false;
+    Toolbar toolbar;
 
     public TextView typeOfTask;
 
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(findViewById(R.id.toolbar));
 
-        typeOfTask = findViewById(R.id.which_tasks);
+        //typeOfTask = findViewById(R.id.which_tasks);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         mIsInverted = sharedPref.getBoolean("tfSetting", false);
@@ -50,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             isCompleted = savedInstanceState.getBoolean("filtered");
         }
+        toolbar = findViewById(R.id.toolbar);
+
 
 
 
@@ -76,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         getMenuInflater().inflate(R.menu.activity_main,menu);
+        toolbar.findViewById(R.id.toolbar);
+        toolbar.setTitle("To Do Tasks");
        // menu.getItem(1).setIcon(R.drawable.)
         return true;
 
@@ -95,13 +102,19 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_completed:
                 isCompleted = !isCompleted;
                 if(isCompleted){
-                    typeOfTask.setText("Completed Tasks:");
+                   // typeOfTask.setText("Completed Tasks:");
+                   // Toolbar toolbar = findViewById(R.id.toolbar);
+                    toolbar.setTitle("Completed Tasks");
+
                     item.setIcon(R.drawable.check_mark);
                     TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);
                     TasksViewModel.filterIsComplete(isCompleted);
                     TasksViewModel.getCompletedTasks();
                 }else{
-                    typeOfTask.setText("To do:");
+                    //typeOfTask.setText("To do:");
+
+                    //Toolbar toolbar = findViewById(R.id.toolbar);
+                    toolbar.setTitle("To Do tasks:");
 
                     item.setIcon(R.drawable.assignment_icon);
                     TasksViewModel = new ViewModelProvider(this).get(TasksViewModel.class);

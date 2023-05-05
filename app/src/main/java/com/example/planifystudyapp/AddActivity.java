@@ -2,7 +2,10 @@ package com.example.planifystudyapp;
 
 
 import android.app.Dialog;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,12 +29,40 @@ public class AddActivity extends AppCompatActivity {
     private int task_id;
     private boolean isCompleted;
     EditText dueDate;
+    View layout;
+
     private AlertDialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.create_task);
+         setContentView(R.layout.create_task);
+
+        View rootView = findViewById(R.id.create_task_id);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        int color = (prefs.getString("colorScheme", "").equals("light")? Color.WHITE:Color.DKGRAY);
+        TextView [] tvs  = {findViewById(R.id.taskNameTextView),
+                findViewById(R.id.priorityTextView),
+                findViewById(R.id.dueDateTextView),
+                findViewById(R.id.DescriptionTextView)
+        };
+        if(color != -1){
+            //more efficient than a for loop, not that it would really matter, since its only 4
+            // sets the text color if the current theme is dark to dark
+            // all the text views are in an array lol
+            tvs[0].setTextColor(Color.LTGRAY);
+            tvs[1].setTextColor(Color.LTGRAY);
+            tvs[2].setTextColor(Color.LTGRAY);
+            tvs[3].setTextColor(Color.LTGRAY);
+        }
+
+
+
+        rootView.setBackgroundColor(color);
+
+
+
+
 
         Spinner spinner = findViewById(R.id.prioritySpinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.priority_array,
@@ -61,6 +92,13 @@ public class AddActivity extends AppCompatActivity {
         mDueDateEditText.setOnClickListener(v -> {
             showCalenderDialog();
         });
+
+    }
+    @Override
+    protected void onResume(){
+        super.onResume();
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        int color = (prefs.getString("colorScheme", "").equals("light")? Color.WHITE:Color.DKGRAY);
 
     }
 
